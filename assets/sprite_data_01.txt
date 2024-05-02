@@ -1,0 +1,6 @@
+4
+../assets/sprite01.tga
+../assets/sprite02.tga
+../assets/sprite03.tga
+../assets/sprite04.tga
+250
