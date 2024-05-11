@@ -20,12 +20,12 @@ bool LightShader::Initialize(ID3D11Device* device, HWND hwnd) {
 	int error;
 	bool result;
 
-	error = wcscpy_s(vsFilename, 128, L"../shaders/light.vs");
+	error = wcscpy_s(vsFilename, 128, L"C:\\Users\\cepni\\source\\repos\\dx11\\shaders\\light.vs");
 	if (error != 0) {
 		return false;
 	}
 
-	error = wcscpy_s(psFilename, 128, L"../shaders/light.ps");
+	error = wcscpy_s(psFilename, 128, L"C:\\Users\\cepni\\source\\repos\\dx11\\shaders\\light.ps");
 	if (error != 0) {
 		return false;
 	}

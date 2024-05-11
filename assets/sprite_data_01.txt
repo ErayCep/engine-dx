@@ -1,6 +1,6 @@
 4
-../assets/sprite01.tga
-../assets/sprite02.tga
-../assets/sprite03.tga
-../assets/sprite04.tga
+C:\Users\cepni\source\repos\dx11\assets\sprite01.tga
+C:\Users\cepni\source\repos\dx11\assets\sprite02.tga
+C:\Users\cepni\source\repos\dx11\assets\sprite03.tga
+C:\Users\cepni\source\repos\dx11\assets\sprite04.tga
 250

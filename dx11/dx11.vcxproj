@@ -23,6 +23,7 @@
     <ClCompile Include="bitmap.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="d3dclass.cpp" />
+    <ClCompile Include="font.cpp" />
     <ClCompile Include="inputclass.cpp" />
     <ClCompile Include="instance.cpp" />
     <ClCompile Include="light.cpp" />
@@ -41,6 +42,7 @@
     <ClInclude Include="bitmap.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="d3dclass.h" />
+    <ClInclude Include="font.h" />
     <ClInclude Include="helpers.h" />
     <ClInclude Include="inputclass.h" />
     <ClInclude Include="instance.h" />

@@ -43,9 +43,9 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	}
 
 	m_model = new ModelClass;
-	strcpy_s(textureFilename, "../assets/stone01.tga");
+	strcpy_s(textureFilename, "C:\\Users\\cepni\\source\\repos\\dx11\\assets\\stone01.tga");
 	
-	strcpy_s(modelFilename, "../assets/models/sphere.txt");
+	strcpy_s(modelFilename, "C:\\Users\\cepni\\source\\repos\\dx11\\assets\\models\\sphere.txt");
 
 	result = m_model->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), textureFilename, modelFilename);
 	if (!result) {
@@ -53,7 +53,7 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		return false;
 	}
 
-	strcpy_s(spriteFilename, "../assets/sprite_data_01.txt");
+	strcpy_s(spriteFilename, "C:\\Users\\cepni\\source\\repos\\dx11\\assets\\sprite_data_01.txt");
 
 	m_sprite = new Sprite;
 
