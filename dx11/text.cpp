@@ -77,7 +77,7 @@ bool Text::InitializeBuffers(ID3D11Device* device, ID3D11DeviceContext* deviceCo
 	indexBufferDesc.Usage = D3D11_USAGE_DEFAULT;
 	indexBufferDesc.ByteWidth = sizeof(unsigned long) * m_indexCount;
 	indexBufferDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
-	indexBufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	indexBufferDesc.CPUAccessFlags = 0;
 	indexBufferDesc.MiscFlags = 0;
 	indexBufferDesc.StructureByteStride = 0;
 
@@ -117,6 +117,10 @@ void Text::ShutdownBuffers() {
 	}
 
 	return;
+}
+
+int Text::GetIndexCount() {
+	return m_indexCount;
 }
 
 bool Text::UpdateText(ID3D11DeviceContext* deviceContext, Font* font, char* text, int positionX, int positionY, float red, float green, float blue) {

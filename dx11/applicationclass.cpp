@@ -12,6 +12,10 @@ ApplicationClass::ApplicationClass()
 	m_lights = 0;
 	m_sprite = 0;
 	m_timer = 0;
+	m_FontShader = 0;
+	m_Font = 0;
+	m_TextString1 = 0;
+	m_TextString2 = 0;
 }
 
 
@@ -28,6 +32,7 @@ ApplicationClass::~ApplicationClass()
 bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 {
 	bool result;
+	char testString1[32], testString2[32];
 	char textureFilename[128];
 	char modelFilename[128];
 	char spriteFilename[128];
@@ -85,6 +90,8 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		return false;
 	}
 
+
+
 	m_numLights = 4;
 
 	m_lights = new LightClass[m_numLights];
@@ -115,12 +122,81 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	m_camera = new CameraClass;
 	m_camera->SetPosition(0.0f, 0.0f, -5.0f);
 
+	m_FontShader = new FontShader;
+
+	result = m_FontShader->Initialize(m_Direct3D->GetDevice(), hwnd);
+	if (!result)
+	{
+		MessageBox(hwnd, L"Could not initialize the font shader object.", L"Error", MB_OK);
+		return false;
+	}
+
+	m_Font = new Font;
+
+	result = m_Font->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), 0);
+	if (!result)
+	{
+		MessageBox(hwnd, L"Could not initialize the font class class.", L"Error", MB_OK);
+		return false;
+	}
+
+	strcpy_s(testString1, "Hello");
+	strcpy_s(testString2, "Goodbye");
+
+	m_TextString1 = new Text;
+
+	result = m_TextString1->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, 32, m_Font, testString1, 10, 10, 0.0f, 1.0f, 0.0f);
+	if (!result)
+	{
+		MessageBox(hwnd, L"Could not initialize the text string 1 class.", L"Error", MB_OK);
+		return false;
+	}
+
+	// Create and initialize the second text object.
+	m_TextString2 = new Text;
+
+	result = m_TextString2->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), screenWidth, screenHeight, 32, m_Font, testString2, 10, 50, 1.0f, 1.0f, 0.0f);
+	if (!result)
+	{
+		MessageBox(hwnd, L"Could not initialize the text string 2 class.", L"Error", MB_OK);
+		return false;
+	}
+
 	return true;
 }
 
 
 void ApplicationClass::Shutdown()
 {
+	if (m_TextString2)
+	{
+		m_TextString2->Shutdown();
+		delete m_TextString2;
+		m_TextString2 = 0;
+	}
+
+	if (m_TextString1)
+	{
+		m_TextString1->Shutdown();
+		delete m_TextString1;
+		m_TextString1 = 0;
+	}
+
+	if (m_Font)
+	{
+		m_Font->Shutdown();
+		delete m_Font;
+		m_Font = 0;
+	}
+
+	// Release the font shader object.
+	if (m_FontShader)
+	{
+		m_FontShader->Shutdown();
+		delete m_FontShader;
+		m_FontShader = 0;
+	}
+
 	if (m_timer) {
 		delete m_timer;
 		m_timer = 0;
@@ -295,6 +371,30 @@ bool ApplicationClass::Render(float rotation)
 	}
 
 	m_Direct3D->TurnZBufferOn();
+
+	m_Direct3D->TurnZBufferOff();
+	m_Direct3D->EnableAlphaBlending();
+
+	m_TextString1->Render(m_Direct3D->GetDeviceContext());
+
+	result = m_FontShader->Render(m_Direct3D->GetDeviceContext(), m_TextString1->GetIndexCount(), worldMatrix, viewMatrix, orthoMatrix,
+		m_Font->GetTexture(), m_TextString1->GetPixelColor());
+	if (!result)
+	{
+		return false;
+	}
+
+	m_TextString2->Render(m_Direct3D->GetDeviceContext());
+
+	result = m_FontShader->Render(m_Direct3D->GetDeviceContext(), m_TextString2->GetIndexCount(), worldMatrix, viewMatrix, orthoMatrix,
+		m_Font->GetTexture(), m_TextString2->GetPixelColor());
+	if (!result)
+	{
+		return false;
+	}
+
+	m_Direct3D->TurnZBufferOn();
+	m_Direct3D->DisableAlphaBlending();
 
 	// Present the rendered scene to the screen.
 	m_Direct3D->EndScene();

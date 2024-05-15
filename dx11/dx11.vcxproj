@@ -24,6 +24,7 @@
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="d3dclass.cpp" />
     <ClCompile Include="font.cpp" />
+    <ClCompile Include="font_shader.cpp" />
     <ClCompile Include="inputclass.cpp" />
     <ClCompile Include="instance.cpp" />
     <ClCompile Include="light.cpp" />
@@ -33,6 +34,7 @@
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="sprite.cpp" />
     <ClCompile Include="systemclass.cpp" />
+    <ClCompile Include="text.cpp" />
     <ClCompile Include="texture.cpp" />
     <ClCompile Include="texture_shader.cpp" />
     <ClCompile Include="timer.cpp" />
@@ -43,6 +45,7 @@
     <ClInclude Include="camera.h" />
     <ClInclude Include="d3dclass.h" />
     <ClInclude Include="font.h" />
+    <ClInclude Include="font_shader.h" />
     <ClInclude Include="helpers.h" />
     <ClInclude Include="inputclass.h" />
     <ClInclude Include="instance.h" />
@@ -52,6 +55,7 @@
     <ClInclude Include="shader.h" />
     <ClInclude Include="sprite.h" />
     <ClInclude Include="systemclass.h" />
+    <ClInclude Include="text.h" />
     <ClInclude Include="texture.h" />
     <ClInclude Include="texture_shader.h" />
     <ClInclude Include="timer.h" />

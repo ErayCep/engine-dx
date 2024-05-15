@@ -15,6 +15,9 @@
 #include "instance.h"
 #include "sprite.h"
 #include "timer.h"
+#include "font.h"
+#include "font_shader.h"
+#include "text.h"
 
 const bool FULL_SCREEN = false;
 const bool VSYNC_ENABLED = true;
@@ -48,6 +51,9 @@ private:
 	Sprite* m_sprite;
 	Timer* m_timer;
 	int m_numLights;
+	FontShader* m_FontShader;
+	Font* m_Font;
+	Text* m_TextString1, * m_TextString2;
 };
 
 #endif
