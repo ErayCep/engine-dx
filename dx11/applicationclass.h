@@ -18,6 +18,7 @@
 #include "font.h"
 #include "font_shader.h"
 #include "text.h"
+#include "model_loader.h"
 
 const bool FULL_SCREEN = false;
 const bool VSYNC_ENABLED = true;
@@ -50,10 +51,8 @@ private:
 	LightClass* m_lights;
 	Sprite* m_sprite;
 	Timer* m_timer;
+	ModelLoader* m_modelLoader;
 	int m_numLights;
-	FontShader* m_FontShader;
-	Font* m_Font;
-	Text* m_TextString1, * m_TextString2;
 };
 
 #endif
